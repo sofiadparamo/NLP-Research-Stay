@@ -8,4 +8,5 @@ Student: Sofía Páramo
 
 ## Contents
 
-- **Week 1:** [Intro to NLP](./week_1/README.md)
+- **Week 1:** [Intro to NLP](./week_1/)
+- **Week 2:** [Text Preprocessing and Tokenization](./week_2/)
