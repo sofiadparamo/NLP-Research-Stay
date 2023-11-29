@@ -13,3 +13,5 @@ Student: Sofía Páramo
 - **Week 3:** [Language Modeling and N-grams](./week_3/)
 - **Week 4:** [Maximum Likelihood Estimation](./week_4/)
 - **Week 5:** [Neural Networks](./week_5/)
+
+- **Final Project:** [Sentiment Analysis](./final/)
