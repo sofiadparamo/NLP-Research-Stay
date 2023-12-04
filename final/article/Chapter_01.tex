@@ -1,0 +1,129 @@
+\chapter{Introduction}
+\label{chapter:chapter01}
+
+\section{Motivation}
+\parskip=0.5em
+
+As technology advances, the lifestyle of people has been shifting towards being surrounded by Artificial Intelligence, in a sense, the progress seems overwhelmingly fast and massive. The development of these technologies is, however, no easy task, as the complexity of modern systems also grow exponentially, both using a large variety of techniques and needing extremely expensive equipment with huge architectures. 
+
+Natural Language Processing (NLP) is an immense field within Artificial Intelligence, which is in itself a subset of Computer Science, however, something interesting happens when trying to define what NLP conveys to, that is, an intersection between Linguistics, Computer Science and Statistics. As it turns out, featuring the ability for computers to understand natural languages is not trivial.
+
+This research is motivated by the extensive and diverse knowledge needed in this task, to identify which some of the most popular techniques used for NLP may be best suitable for different contexts, aiming to shine some light into the best usage of resources and techniques for a particular objective, rather than following the current trend to use Large Language Models as a one-size fits-all solution; to generate more information so better decisions are made in a constantly developed industry that is shaping the future of humanity concurrently.
+
+\section{Literature Review}
+
+As previously mentioned, Natural Language Processing (NLP) may be defined as a field at the intersection of Computer Science and Linguistics, aiming to enable computers to understand, interpret, and generate human language \cite{liddy2001}. This is, however, not the only definition, as NLP is a large and complex field. As such, it’s important to understand some definitions, such as levels of language, a set of descriptions on how Natural Languages carry not only meaning bun underlaying information and relations on different orders. These may be enumerated as follows:
+\begin{enumerate}
+    \item Phonology.
+    \item Morphology.
+    \item Lexical.
+    \item Syntactic.
+    \item Semantic.
+    \item Discourse.
+    \item Pragmatic.
+\end{enumerate}
+
+Ordered from higher to lower, however, not all levels are analyzed in NLP, and the lower levels have proven to be enough to perform complex analysis as part of a technique of NLP, for instance, Lexical level on the use of lexicons. There are many approaches that may be used to perform NLP, each with different implications.
+
+\subsection{Symbolic Approaches}
+
+They usually rely on manually created rules, making use of dictionaries and ontologies. The technique depends on a deep analysis of linguistic phenomena and is based on the explicit representation of facts about language through well-understood knowledge representation \cite{nadkarni2011}.
+
+\subsection{Statistical Approaches}
+
+These techniques employ mathematical techniques often relying on large text corpora to have enough data to create general linguistic models that accurately represent the linguistic phenomena. They are based on observation of examples rather than employing prior knowledge on language.
+
+\subsection{Connectionist Approaches}
+
+Similar to statistical approaches, they model linguistic phenomena via generalized models, with the additional implementation of theories of representation, allowing transformation, inference, and manipulation of logic, often used on artificial neural networks in combination with deep learning for both supervised and unsupervised learning.
+
+\subsection{Data preparation}
+
+Invariant to these approaches, though, there is a set of efforts that may be used to overall improve the results any of the models may generate. As in any other machine learning application, data is extremely important when trying to model the behavior of a phenome \cite{hickman2020}. 
+
+In particular for linguistics, there are some specific processes that may be followed to prepare the data, transforming raw text input into a structured and manageable format, not only building composition, but also reducing dimensionality resulting in both enhancement of quality and performance improvement on the model.
+
+\begin{itemize}
+    \item Lowercasing: Turn all characters to lowercase
+    \item Punctuation removal: Removing all punctuation marks.
+    \item Handling of special characters: Dealing with symbols and emojis.
+    \item Elimination of stop words: Removing words that may not contribute to the context, such as ”and”, “the”, etc.
+    \item Tokenization: The sub-division of smaller elements from text.
+\end{itemize}
+
+Tokenization in particular is crucial for dealing both with artificial and natural languages, however, choosing what may be considered a token in natural languages is not as trivial as it may seem; while tokens are widely used in applications like compilers, the complexity of the problem grows rapidly when encountering natural languages and their rich variety of rules and instances, so many methods may be used, the most popular one being the separation of tokens by words from a character stream \cite{grefenstette1994}.
+
+\subsection{N-Grams}
+
+Another technique for the generation of language models is N-Grams, a method that organizes sequences of length n composed by words in a collection, often named after the length of the instance collection itself, for instance, the term given to a collection of sequences formed by two words is bi-gram, three words tri-gram, and so on \cite{brill1998}.
+
+While n-grams are one of the most popular methods for language modeling, they are not able to outperform other advanced techniques, such as neural networks, however, they are proven to be good on training time and low-resource settings. Some of the most popular techniques are:
+
+\begin{itemize}
+    \item Kneser-Ney Smoothing: Introducing a discounting method to estimate probability based on context.
+    \item Modified Kneser-Ney Smoothing: Discounting method more sensitive to existing mass.
+    \item Generalized Kneser-Keny Smoothing: Richer parametrization of discount method to allow more flexibility \cite{shareghi2019}.
+\end{itemize}
+
+These different techniques are useful in different scenarios, even though they seem to me an upgrade of the last one, however, the extra flexibility provided by the last one with the introduction of parametrization is certainly well received in an ongoing research field.
+
+\subsection{Parameter Estimation}
+
+Having outlined the concept and variants of N-Gram models and their applicability in certain scenarios, attention must now be turned to the critical aspect of Parameter Estimation in language modeling. This segment forms a pivotal bridge between the basic structural formation of language models and the more nuanced process of fine-tuning to achieve higher accuracy and efficiency.
+
+Parameter Estimation is integral to the development and optimization of language models. It involves methodologies and techniques that determine the best parameters to accurately represent the linguistic patterns captured by language models. This process is foundational in optimization and in advanced language modeling techniques. Two general methods for this task, and coincidentally, the most popular, are the following:
+
+\begin{itemize}
+    \item Maximum Likelihood Estimation (MLE)
+    \item Least Squares Estimation (LSE)
+\end{itemize}
+
+However, MLE has proven to be more relevant in the scientific context due to its large applicability and strong fundamentals, contrary to LSE often getting discredited as a tool for hypothesis testing.
+
+MLE is also considered pre-requisite for Bayesian inference when modeling missing data in random effects and in model selection criteria, providing sufficiency, consistency, efficiency, and invariance \cite{myung2003}.
+
+The method consists in identifying the population that most likely has generated a certain number of observations, also called data. Particularly in this context, data is represented as a vector that comes from a random sample from an unknown population. Data is represented in a probability distribution, with which model parameters are associated. As the parameters change in value, the distribution’s shape fluctuates, leading to the objective of optimizing the values that maximize the probability of the observed data.
+
+There are analytic approaches to do the optimization making use of partial derivates, often relying on logarithmic variations of the probability function to solve the maximization problem, however, this method is not viable in all cases and functions increase in complexity as dimensionality grows, leading to not always analytically solvable equations.
+
+Often, the problem requires heuristics and stochastic numerical methods to gain field on the growing complexity. One of the most popular methods to achieve this is Gradient Descent, leveraging the technique to the exploration of multiple dimensions without solving analytically. This is, however, not perfect, as it’s easy to encounter the local maxima problem, causing the algorithm to get stuck on a sub-optimal solution, but there are several alternatives to face that problem, such as using multiple starting points, inserting variation in the optimization algorithms, and making use of regularization.
+
+Since the final objective of a model is to generalize and predict new data based on observations, the use of these techniques may be used as additional tools to help different approaches to achieve that.
+
+\subsection{Neural Networks}
+
+Artificial Neural Networks, as their name suggest, are a series of systems that follow a paradigm inspired by the way a real biological nervous system work. ANNs are a major topic in computer science and artificial intelligence, therefore, it would be impossible to cover all aspects of them, however, focusing on some relevant sections is beneficial to explain their usage and approach in the analysis of Natural Language Processing.  
+
+Neural Networks consist of multiple layers and nodes interconnected forming a network topology. Nodes are usually called neurons, and every single one of them has a simple processing task: Colleting inputs and generating a single output to all subscribers.
+
+The network topology of a Neural Network must be a directed graph with layers only connected forward, forming no cycles, and with each node conveying a single signal labeled by strength, usually called weight.
+
+Neurons are simple linear functions, usually containing an activation function that actively limits the range of values a given neuron may output, avoiding overscale and smoothing the outputs, increasing the performance of a model. Neurons by themselves only may model linear behavior, however, forming a network allows them to model very complex phenomena, even allowing techniques to simulate non-linearity, such as logarithmic sigmoid functions.
+
+ANNs usually allow a series of parameters to be adjusted, and they are very flexible to different problems. These parameters are often chosen at random or by a human operator with prior knowledge on the parametrization of the problem of interest.Since most of the terminology used in ANNs is inspired by the nervous system, it is relevant to mention some of the most commonly used terms, such as a synapse, used to describe a connection between two neurons. When the weight of a synapse is positive the term used is excitatory synapse, while a negative weight on a synapse is described as an inhibitory synapse.
+
+With this knowledge on ANNs it may be possible to start building a system, although, there are different procedures to train a model. Some of the most relevant are:
+
+\begin{itemize}
+    \item Supervised learning: Inputs have a target output. Needs a Fed Forward Neural Network to account for error between predictions and observations.
+    \item Unsupervised learning: Data is provided with no label. The neural network tries to learn from any apparent pattern, responding to clusters and identifying statistically significant features.
+    \item Reinforcement learning: System gets feedback from a simulation, either in form of a reward, or as punishment \cite{dongare2012}.
+\end{itemize}
+
+Once defined what a Neural Network is, it is important to describe some of the techniques used on top of the neural network that will be employed during the experimentation process.
+
+\subsection{Long Short-Term Memory}
+
+Working with Neural Networks usually comes with some challenges, such as the exponential decay of backpropagation or the blow-up of error signals. Long Short-Term Memory (LSTM) helps overcome these issues by bridging minimal time lags exceeding a given number of discrete time steps, enforcing a constant error flow through special units called constant error carrousels.
+
+To achieve this, the LSTM architecture implements memory cells and gate units to prevent error decay and allow the network to learn over long time intervals. Also, introducing multiplicative input and output gates on this implementation effectively protects the content of the cell memory from irrelevant inputs and ultimately prevents the perturbation and distortion of other units.
+
+The core components of a gate unit are the following:
+
+\begin{itemize}
+    \item Input gate: Determines how much of the new information will be restored in the cell state.
+    \item Forget gate: Decides what portion of existing information in the cell state is discarded.
+    \item Output gate: Controls the extent to which the vale in the cell influences the output \cite{hochreiter1997}.
+\end{itemize}
+
+Implementing LSTM in Neural Networks effectively addresses the natural limitations of the approach when encountering long training intervals, also allowing the network to handle increasingly complex tasks that involve long time lags.

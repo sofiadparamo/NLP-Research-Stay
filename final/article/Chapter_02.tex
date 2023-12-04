@@ -1,0 +1,290 @@
+\chapter{Comparing Techniques}
+\label{chapter:chapter02}
+
+\section{Experimentation}
+
+The three approaches to compare each have a set of properties and parameters, however, the training data is the same for all of them.
+
+The training data consists of 16,000 lines of text, each of which has an emotion that the text reflects. These two columns are separated by a semi-colon. Each line of text represents a different observation. 
+
+To conduct the testing, an exclusive set of 2000 lines was separated. An extra exclusive set 2000 lines was separated for model validation purposes. The total data sums up to 20,000 observations.
+
+The experiments conducted are three different approaches to generate a language model:
+
+\begin{itemize}
+    \item Rule-based Approach
+    \item Neural Network
+    \item Deep learning
+\end{itemize}
+
+The specifics for each experiment are described in the following section.
+
+\subsection{Rule-based Approach}
+
+This is a simple symbolic approach implemented in Python, making use of lexicons to predict the emotion of the given line. Figure \ref{fig:rule-1} depicts the general algorithm.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.5\textwidth]{images/rules.png}
+    \caption{Rule-based Approach}
+    \label{fig:rule-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.5\textwidth]{images/rules-2.png}
+    \caption{Rule-based Lexicons}
+    \label{fig:rule-2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.5\textwidth]{images/rules-3.png}
+    \caption{Rule-based Prediction}
+    \label{fig:rule-3}
+\end{figure}
+
+Figure \ref{fig:rule-2} describes the creation of a lexicon, finally, figure \ref{fig:rule-3} describes the prediction of emotions.
+
+The two hyperparameters for this approach were Steps and Word Max Count. To choose them, a set of diverging quantities was generated, starting with 5 steps and 200 words, then diverging in both directions.
+
+The full set of hyperparameters chosen is visible on the table \ref{tab:rule-hyperparameters}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c|c||}
+    \hline
+    Steps & Word Max Count \\
+    \hline
+    1 & 100 \\
+    1 & 200 \\
+    3 & 100 \\
+    3 & 200 \\
+    5 & 200 \\
+    10 & 200 \\
+    15 & 300 \\
+    20 & 400 \\
+    20 & 800 \\
+    20 & 1000 \\
+    \hline
+\end{tabular}
+\caption[Rule-based Hyperparameters]{Hyperparameter for Rule-based Approach}
+\label{tab:rule-hyperparameters}
+\end{center}
+\end{table}
+
+\subsection{Neural Network}
+
+The Neural Network approach was implemented in Python using PyTorch as framework for the Neural Network. Figure \ref{fig:neural-network} describes the process of the algorithm found in the experiment.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.5\textwidth]{images/neural-network.png}
+    \caption{Neural Network Approach}
+    \label{fig:neural-network}
+\end{figure}
+
+This neural network implements an embedding layer and makes use of hidden layers topology. It is not possible to describe or depict the actual network since the dimensionality of the experiment fluctuates as hyperparameter.
+
+The full set of hyperparameters is Max Sequence Length, Epochs and Embedded Dimension. Again, the values were chosen by diverging starting values of 50, 50 and 100 respectively, however, trying to permutate possibilities as they diverge, as shown in the table \ref{tab:nn-hyperparameters}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c|c|c||}
+    \hline
+    Max Sequence Length & Epochs & Embedded Dimension \\
+    \hline
+    25 & 50 & 50 \\
+    25 & 50 & 100 \\
+    25 & 50 & 200 \\
+    25 & 100 & 100 \\
+    25 & 100 & 200 \\
+    50 & 50 & 100 \\
+    50 & 50 & 200 \\
+    50 & 100 & 100 \\
+    50 & 100 & 200 \\
+    100 & 50 & 100 \\
+    100 & 50 & 200 \\
+    \hline
+\end{tabular}
+\caption[Neural Network Hyperparameters]{Hyperparameter for Neural Network Approach}
+\label{tab:nn-hyperparameters}
+\end{center}
+\end{table}
+
+
+\subsection{Deep Learning}
+
+The Deep Learning approach has a similar algorithm to the Neural Network approach, and follow the same architecture, however, the Deep Learning Neural Network implements LSTM as part of the architecture, also increasing the number of epochs to get into deep learning. 
+
+The chosen hyperparameters were Batch Size, Embedding Dimension, Hidden Dimension and Epochs (in thousands). The values were chosen to have different permutations of increasing values in epoch with different cases of the rest of parameters, as shown in the table \ref{tab:dl-hyperparameters}.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c|c|c|c||}
+    \hline
+    Batch Size & Embedding Dimension & Hidden Dimension & Epochs (k) \\
+    \hline
+    32 & 100 & 128 & 5 \\
+    64 & 100 & 128 & 5 \\
+    32 & 200 & 128 & 5 \\
+    32 & 100 & 256 & 5 \\
+    32 & 100 & 128 & 10 \\
+    32 & 100 & 128 & 20 \\
+    32 & 100 & 128 & 30 \\
+    32 & 100 & 128 & 40 \\
+    32 & 100 & 128 & 50 \\
+    32 & 100 & 128 & 100 \\
+    \hline
+\end{tabular}
+\caption[Deep Learning Hyperparameters]{Hyperparameter for Deep Learning Approach}
+\label{tab:dl-hyperparameters}
+\end{center}
+\end{table}
+
+\section{Results}
+
+The success metric chosen for these experiments was Accuracy, which is defined as the number of lines the model successfully predicted divided by the total number of lines tested.
+
+Since the first experiment has a very different approach to the latter two, which are very similar, the figures shown to describe them will vary.
+
+The following figures will show a table of results for each hyper parameter chosen as well as a bar graphic depicting each result. Experimentation runs were conducted once per hyperparameter, and the Hyperparameter columns will indicate the horizontal axis on the bar graphics.
+
+\subsection{Rule-based Approach}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c|c|c|c||}
+    \hline
+    Hyperparameter & Steps & Word Max Count & Accuracy \\
+    \hline
+    1 & 1 & 100 & 43.65\% \\
+    2 & 1 & 200 & 56.25\% \\
+    3 & 3 & 100 & 43.35\% \\
+    4 & 3 & 200 & 55.60\% \\
+    5 & 5 & 200 & 55.70\% \\
+    6 & 10 & 200 & 55.70\% \\
+    7 & 15 & 300 & 59.80\% \\
+    8 & 20 & 400 & 58.65\% \\
+    9 & 20 & 800 & 57.40\% \\
+    10 & 20 & 1000 & 55.50\% \\
+    \hline
+\end{tabular}
+\caption[Rule-based Results]{Accuracy for Rule-based Set Up}
+\label{tab:rule-results}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{images/acc-bar-rules.png}
+    \caption{Rule-based Accuracy per Hyperparameter Set}
+    \label{fig:rule-results}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{images/acc-rules.png}
+    \caption{Rule-based Accuracy per Counter Most Common}
+    \label{fig:rule-results-2}
+\end{figure}
+
+\subsection{Neural Network}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c|c|c|c|c||}
+    \hline
+    Hyperparameter & Max Sequence Length & Epochs & Embedded Dimension & Accuracy \\
+    \hline
+    1 & 25 & 50 & 50 & 84.65\% \\
+    2 & 25 & 50 & 100 & 83.70\% \\
+    3 & 25 & 50 & 200 & 83.75\% \\
+    4 & 25 & 100 & 100 & 81.35\% \\
+    5 & 25 & 100 & 200 & 81.30\% \\
+    6 & 50 & 50 & 100 & 88.00\% \\
+    7 & 50 & 50 & 200 & 86.95\% \\
+    8 & 50 & 100 & 100 & 84.55\% \\
+    9 & 50 & 100 & 200 & 83.85\% \\
+    10 & 100 & 50 & 100 & 88.40\% \\
+    11 & 100 & 50 & 200 & 88.15\% \\
+    \hline
+\end{tabular}
+\caption[Neural Network Results]{Accuracy for Neural Network Set Up}
+\label{tab:nn-results}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{images/acc-bar-nn.png}
+    \caption{Neural Network Accuracy per Hyperparameter Set}
+    \label{fig:nn-results}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{images/loss-nn.png}
+    \caption{Neural Network Accuracy Loss across Epochs}
+    \label{fig:nn-results-2}
+\end{figure}
+
+\subsection{Deep Learning}
+
+\begin{table}[H]
+\begin{center}
+\centering
+\begin{tabular}{|| p{0.1\linewidth} | p{0.1\linewidth} | p{0.15\linewidth} | p{0.1\linewidth} | p{0.1\linewidth} | p{0.1\linewidth} ||}
+    \hline
+    Hyper-parameter & Batch Size & Embedding Dimension & Hidden Dimension & Epochs (k) & Accuracy \\
+    \hline
+    1 & 32 & 100 & 128 & 5 & 28.95\% \\
+    2 & 64 & 100 & 128 & 5 & 34.60\% \\
+    3 & 32 & 200 & 128 & 5 & 60.80\% \\
+    4 & 32 & 100 & 256 & 5 & 37.95\% \\
+    5 & 32 & 100 & 128 & 10 & 68.2\% \\
+    6 & 32 & 100 & 128 & 20 & 88.9\% \\
+    7 & 32 & 100 & 128 & 30 & 89.1\% \\
+    8 & 32 & 100 & 128 & 40 & 88.55\% \\
+    9 & 32 & 100 & 128 & 50 & 88.95\% \\
+    10 & 32 & 100 & 128 & 100 & 88.70\% \\
+    \hline
+\end{tabular}
+\caption[Deep Learning Results]{Accuracy for Deep Learning Set Up}
+\label{tab:dl-results}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{images/acc-bar-dl.png}
+    \caption{Deep Learning Accuracy per Hyperparameter Set}
+    \label{fig:dl-results}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{images/loss-dl.png}
+    \caption{Deep Learning Accuracy Loss across Epochs}
+    \label{fig:dl-results-2}
+\end{figure}
+
+\section{Discussion}
+
+The results clearly show a difference between the accuracy of the Rule-Based Approach versus the other two, being the former the worst performer of them all, however, it’s important to recall the limitations of the rule-based approach as it generates a model that is not relevantly accurate, but most of the time gets the emotion from the observation right. Also, this approach is faster than the other two requiring not only less iterations, but also involving fewer complex operations.
+
+It is also important to mention that increasing the counter most common value affected the model negatively, as shown in figure \ref{fig:rule-results-2}. This is due to grabbing all the words in an observation as part of the lexicon, instead of choosing the top (best) ones.
+
+As for the Neural Network, the accuracy was similar in all results, doing best on the hyperparameter 6 as shown in table \ref{tab:nn-results}. Also, no highlight in improvement is visible on loss, seeing all hyperparameters converge to approximately the same loss the more epochs passed.
+
+Finally, the Deep Learning Neural Network showed a poor performance in the first epochs, but the loss function quickly converged the more time lags passed (see figure \ref{fig:dl-results-2}). As mentioned in the literature review, this is due to the strength of deep learning models when learning over large amounts of data and large time lags. The performance grew the more epochs used, but it stabilized after 20 thousand epochs, as shown in table \ref{tab:dl-results} and figure \ref{fig:dl-results}.
+
+\section{Conclusion}
+
+The Natural Language Processing approaches for Emotion Classification serve different purposes and may be used on different contexts depending on the kind of data and computational power available.
+
+However, the efficiency of the generated models by each approach is measurable, giving a clear image on the performance of each one in a controlled problem.
+
+After the experimentation and results, it’s clear that the Neural Network and Deep Learning approaches are better suited for a highly complex and large dataset on an environment with high computational resources, by reaching accuracies of 88% and 89.1% respectively, in contrast to the 59.8% from the rule-based approach. 
+
+While both Neural Network and Deep Learning approaches have similar efficiency, the Neural Network experiment reached peak performance in less computational time as measured by epochs and function calling. Further research would have to be conducted in order to find whether there’s any major advantage or context in which a Deep Learning model may perform better than the Neural Network, despite running longer on computational time.
